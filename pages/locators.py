@@ -13,3 +13,6 @@ class ProductPageLocators():
     REGISTER_FORM = (By.ID, "register_form")
     PRODUCT_NAME = (By.CSS_SELECTOR, ".product_main h1")
     MESSAGE_ABOUT_ADDING = (By.CSS_SELECTOR, "div.alertinner")
+    BASKET_TOTAL = (By.CSS_SELECTOR, ".alertinner p strong")
+    PRODUCT_COST = (By.CSS_SELECTOR, "p.price_color")
+
