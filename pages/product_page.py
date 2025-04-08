@@ -8,7 +8,6 @@ class ProductPage(BasePage):
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         button.click()
         self.solve_quiz_and_get_code()
-
         self.should_be_message_product_name()
         self.should_be_message_about_cost()
         self.should_be_message_about_basket_total()
@@ -29,7 +28,8 @@ class ProductPage(BasePage):
     def message_and_product_name_should_be_equal(self):
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
         message = self.browser.find_element(*ProductPageLocators.MESSAGE_ABOUT_ADDING).text
-        assert product_name in message, \
+        #print(f'message: {message}, product name: {product_name}')
+        assert product_name == message, \
             "No product name in the message"
 
     def should_be_message_about_cost(self):
