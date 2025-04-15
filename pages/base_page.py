@@ -1,4 +1,6 @@
 import math
+from dataclasses import field
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
@@ -38,6 +40,14 @@ class BasePage():
             return False
         return True
 
+    def input_data(self, how, what, data):
+        try:
+            input_field = self.browser.is_element_present(how, what)
+            input_field.send_keys(data)
+        except NoSuchElementException:
+            return False
+        return True
+
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -66,5 +76,8 @@ class BasePage():
                 until_not(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
-
         return True
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"

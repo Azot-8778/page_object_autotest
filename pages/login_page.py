@@ -24,3 +24,8 @@ class LoginPage(BasePage):
             "Register form is not presented"
 
     def register_new_user(self, email, password):
+        self.input_data(*LoginPageLocators.EMAIL_REGISTER,email)
+        self.input_data(*LoginPageLocators.PASSWORD_REGISTER, password)
+        self.input_data(*LoginPageLocators.PASSWORD_CONFIRM, password)
+        button = self.browser.find_element(*LoginPageLocators.REGISTER_BUTTON)
+        button.click()
