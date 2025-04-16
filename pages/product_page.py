@@ -1,5 +1,3 @@
-import time
-
 from .base_page import BasePage
 from .locators import ProductPageLocators
 
@@ -9,13 +7,12 @@ class ProductPage(BasePage):
         button = self.browser.find_element(*ProductPageLocators.ADD_TO_BASKET_BUTTON)
         button.click()
         self.solve_quiz_and_get_code()
-        # self.should_be_message_product_name()
-        # self.should_be_message_about_cost()
-        # self.should_be_message_about_basket_total()
-        # self.should_be_message_about_adding()
-        # self.message_and_product_name_should_be_equal()
-        # self.basket_and_product_price_should_be_equal()
-
+        self.should_be_message_product_name()
+        self.should_be_message_about_cost()
+        self.should_be_message_about_basket_total()
+        self.should_be_message_about_adding()
+        self.message_and_product_name_should_be_equal()
+        self.basket_and_product_price_should_be_equal()
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ABOUT_ADDING), \

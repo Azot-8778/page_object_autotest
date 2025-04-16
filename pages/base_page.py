@@ -1,6 +1,4 @@
 import math
-from dataclasses import field
-
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 from selenium.common.exceptions import TimeoutException
@@ -42,7 +40,7 @@ class BasePage():
 
     def input_data(self, how, what, data):
         try:
-            input_field = self.browser.is_element_present(how, what)
+            input_field = self.browser.find_element(how, what)
             input_field.send_keys(data)
         except NoSuchElementException:
             return False
@@ -79,5 +77,5 @@ class BasePage():
         return True
 
     def should_be_authorized_user(self):
-        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
-                                                                     " probably unauthorised user"
+        assert self.is_element_present(*BasePageLocators.USER_ICON), \
+            "User icon is not presented, probably unauthorised user"
